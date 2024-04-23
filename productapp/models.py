@@ -18,10 +18,21 @@ class Productcloth(models.Model):
 class Sizecategory(models.Model):
     size=models.CharField(max_length=100)
     def __str__(self):
-        return self.size
+      return self.size
 
 class ProductVariant(models.Model):
-   product = models.ForeignKey(Productcloth,on_delete=models.CASCADE,null=True,blank=True)
-   csize = models.ForeignKey(Sizecategory,on_delete=models.CASCADE,null=True,blank=True)
-   actualprice=models.IntegerField()
-   discountedprice = models.IntegerField()
+    SIZE = (
+        ('s','s'),
+        ('m','m'),
+        ('l','l'),
+        ('xl','xl'),
+        ('xxl','xxl')
+    )
+    product = models.ForeignKey(Productcloth,on_delete=models.CASCADE,null=True,blank=True)
+    name = models.CharField(max_length=100,choices=SIZE,null=True,blank=True)
+    csize = models.ForeignKey(Sizecategory,on_delete=models.CASCADE,null=True,blank=True)
+    actualprice=models.IntegerField()
+    discountedprice = models.IntegerField()
+    
+    
+    
